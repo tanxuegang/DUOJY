@@ -1,0 +1,11 @@
+<tr>
+    <td><%= item.title%></td>
+    <td><%= item.directoryName%></td>
+
+    <td><%if(item.grade == 0){%><span style="color: red">幻灯</span><%}else if(item.grade == 1){%>普通<%}else if(item.grade == 2){%><span style="color: green">推荐</span><%}%></td>
+    <td><%= item.media_name%></td>
+    <td><%= item.keywords%></td>
+    <td><%= item.hits%></td>
+    <td><%= moment(item.time).format('YYYY-MM-DD HH:mm:ss')%></td>
+    <td><a href="/admin/editArticle?articleId=<%= item.id%>" class="edit">修改</a> | <a href="javascript:void(0);" data-id="<%= item.id%>" class="remove">删除</a></td>
+</tr>

@@ -1,0 +1,28 @@
+<% include header %>
+<form id="login_form" action="/users/loginForm" method="post">
+    <div class="login_box">
+        <div class="lbox_m">
+            <div class="lbox_li">
+                <ul>
+                    <li><span>会员登录</span></li>
+                    <li style="padding-bottom: 15px;"><div class="li_ip"><em class="n"></em><input type="text" id="username" name="username" value="" class="span4"/></div></li>
+                    <li><div class="li_ip"><em class="p"></em><input type="password" id="password" name="password" value="" class="span4"/></div></li>
+                    <li><input type="checkbox" checked="checked" style="_width: 20px;_margin: 0;"/> 下次自动登录</li>
+                    <li><a href="javascript:void(0);" title="登录" class="login-register-btn">登&nbsp;录</a></li>
+                    <li><a class="fr" href="" title="立即注册">立即注册</a><a class="fr" href="" title="忘记密码">忘记密码</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+</form>
+<script type="text/javascript">
+    $(function(){
+        $(".login-register-btn").click(function(){
+            $("#login_form").submit();
+        });
+    });
+</script>
+<% include footer %>
+

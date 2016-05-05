@@ -1,0 +1,33 @@
+<div class="label-div b-30 border-all" style="position: relative; padding-left: 0;">
+
+
+    <div class="news-list">
+
+        <div class="clearfix none-768 pl-20" style="position: absolute;top: 0;right: 15px;">
+            <a class="tags-box l-10 fc999 pull-left" title="<%= item.keywords%>" href="#"><%= item.keywords%></a>
+        </div>
+
+        <div class="clearfix pt-3">
+            <div class="index-news-img spanm3 pull-left pt-5">
+                <a href="/detail.html?detailId=<%= item._id%>" title="<%= item.title%>" target="_blank" rel="bookmark">
+                    <img class="lazyloadimg" alt="<%= item.title%>" src="<%= item.imageUrl%>" width="180" height="100"></a>
+            </div>
+            <div class="offset3 intro">
+                <h1>
+                    <a title="<%= item.title%>" target="_blank" href="/detail.html?detailId=<%= item._id%>"><%= item.title%></a>
+                </h1>
+
+                <div class="clearfix" style="height: 30px;margin-top: 0px; line-height: 30px;">
+                    <div class="pull-left myxx">
+
+                        <i class="m"><%= item.media_name%></i>
+                        <i class="m"><%= moment(item.time).format('YYYY-MM-DD HH:mm:ss')%></i>
+                    </div>
+
+                </div>
+                <p class="t-1"><%= item.description%></p>
+
+            </div>
+        </div>
+    </div>
+</div>

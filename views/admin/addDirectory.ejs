@@ -1,0 +1,49 @@
+
+<% include adminHeader.ejs %>
+<script type="text/javascript">
+    $(function(){
+        var form = $("#signupForm");
+        form.validate({
+            submitHandler:function(form){
+
+                $.ajax({
+                    url: '/admin/saveDirectory',
+                    type: 'post',
+                    cache: false,
+                    dataType: 'json',
+                    data: 'directoryName='+$("[name='directoryName']").val(),
+                    success: function (ret) {
+                        if(ret.succee == true){
+                            alert(ret.msg);
+                            window.location.href = '/admin/directoryList';
+                        }
+                    },
+                    error: function () {
+                        alert('ajax失败了，请重试！');
+                    }
+                });
+            }
+        });
+
+        $(".a-submit").click(function(){
+            form.submit();
+        });
+        $(".a-reset").click(function(){
+            form[0].reset();
+        });
+
+    });
+</script>
+
+
+<div class="main-form clearfix">
+    <form id="signupForm" method="post">
+        <div class="subform" style="width:800px;">
+            <ul>
+                <li><span>目录名称：</span><input name="directoryName" class="required" type="text"></li>
+            </ul>
+            <div class="form-but"><a href="javascript:void(0);" class="a-submit">提 交</a><a href="/admin/directoryList" class="a-reset">返 回</a> </div>
+        </div>
+    </form>
+</div>
+<% include adminFooter.ejs %>

@@ -1,0 +1,66 @@
+<% include adminHeader.ejs %>
+<script type="text/javascript">
+    $(function(){
+        $("a.remove").click(function(){
+            var id = $(this).attr("data-id");
+            $.ajax({
+                url: '/admin/removeComment',
+                type: 'post',
+                cache: false,
+                dataType: 'json',
+                data: 'commentId='+id,
+                success: function (ret) {
+                    if(ret.succee == true){
+                        alert(ret.msg);
+                        window.location.href = '/admin/commentList';
+                    }else{
+                        alert(ret.msg);
+                    }
+                },
+                error: function () {
+                    alert('ajax失败了，请重试！');
+                }
+            });
+        });
+    });
+</script>
+<div class="main-list clearfix">
+    <div class="search-form">
+        <form id="searchForm" action="/admin/commentList">
+            <input type="hidden" name="page" value="<%= page%>">
+            <ul class="clearfix">
+                <li><span>文章标题</span> <input name="title" type="text"></li>
+                <li><span>作者</span> <input name="" type="text"></li>
+                <li class="ts"><span>注册时间</span> <input name="" type="text"> - <input name="" type="text"></li>
+            </ul>
+        </form>
+        <div class="form-but"><a href="javascript:void(0);">查 询</a><a href="javascript:void(0);">清 空</a></div>
+    </div>
+    <div class="man-table">
+        <table width="100%" border="0" cellspacing="1" cellpadding="0" bgcolor="#CCCCCC" class="table">
+            <thead>
+            <tr>
+                <td width="100">评论人</td>
+                <td width="300">评论内容</td>
+                <td width="300">文章标题</td>
+                <td width="200">评论时间</td>
+                <td width="150">操作</td>
+            </tr>
+            </thead>
+            <tbody>
+            <% list.forEach(function(item){ %>
+            <tr>
+                <td><%= item.name%></td>
+                <td><%= item.content%></td>
+                <td><%= item.articleTitle%></td>
+                <td><%= moment(item.date).format('YYYY-MM-DD HH:mm:ss')%></td>
+                <td><a href="javascript:void(0);" data-id="<%= item.id%>" class="remove">删除</a></td>
+            </tr>
+            <% }) %>
+            </tbody>
+        </table>
+
+    </div>
+    <% include page %>
+</div>
+<% include adminFooter.ejs %>

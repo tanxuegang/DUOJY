@@ -1,0 +1,151 @@
+<% include header %>
+<link rel="stylesheet" type="text/css" href="style/tzjg.css"/>
+<!--头部代码结束-->
+
+<div class="hr tp-div-nexthr" style="margin-top: 0;margin-bottom: 0;padding: 0;"></div>
+<div class="container pb-15">
+    <!-- Example row of columns -->
+    <div class="row">
+        <div class="span12" ng-controller="projectDetail">
+
+            <!--内容页面-->
+
+            <div class="label-div b-30 border-all pt-5 t-20" style="position: relative; padding-left: 0;">
+                <div class="mmdh"><a href="">首页</a> > <a href="">投资机构</a> > <a href="">机构标题</a></div>
+                <div class="news-list">
+                    <div class="clearfix pt-3">
+                        <div class="index-news-img spanm3 pull-left pt-5">
+                            <a href="#" title="{{project.name}}" target="_blank" rel="bookmark">
+                                <img class="lazyloadimg" alt="{{project.name}}" src="{{project.pic}}"/></a>
+                        </div>
+                        <div class="offset3 intro">
+                            <h1><span class="pull-right runing"><a href="">正在运营</a></span> <a title="{{project.name}}"  target="_blank" href="#" ng-bind="project.name"></a></h1>
+
+                            <p class="t-1 mt1" ng-bind="project.description"></p>
+                            <div class="clearfix" style="height: 22px;margin-top: 0px;">
+                                <div class="pull-left myxx">
+                                    <i class="m"><a href="#" target="_blank" ng-bind="project.site"></a></i>
+                                    <i class="m"><a href="#" target="_blank" ng-bind="project.classify"></a></i>
+                                    <i class="m" ng-bind="project.date | date :'yyyy/MM/dd HH:mm:ss'"></i>
+                                </div>
+
+                                <div class="pull-right">
+                                    <a class="read-btn ie6png" href="javascript:void(0);" title="{{project.hits}}次阅读">{{project.hits}}次</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--第二部分开始-->
+
+            <div class="label-div b-30 border-all pt-5 t-20" style="position:relative; padding-left:26px;">
+                <div class="second">
+                    <h5 class="mmh5 t-20 b-20">产品截图</h5>
+                    <div class="mmpic t-45">
+                        <div class="leftjj"><img src="images/leftjj.jpg" /></div>
+                        <div class="rightjj"><img src="images/rightjj.jpg" /></div>
+
+                        <div class="mmpicshow">
+                            <dl>
+                                <dd>
+                                    <p><img src="images/productjt.jpg" /></p>
+                                    <p class="t">1111111111111</p>
+                                </dd>
+                                <dd>
+                                    <p><img src="images/productjt.jpg" /></p>
+                                    <p class="t">22222222222222222</p>
+                                </dd>
+                                <dd>
+                                    <p><img src="images/productjt.jpg" /></p>
+                                    <p class="t">3333333333333333333333</p>
+                                </dd>
+                                <dd>
+                                    <p><img src="images/productjt.jpg" /></p>
+                                    <p class="t">4444444444444444444</p>
+                                </dd>
+                                <dd>
+                                    <p><img src="images/productjt.jpg" /></p>
+                                    <p class="t">55555555555555555555</p>
+                                </dd>
+                            </dl>
+
+                        </div>
+                    </div>
+                    <h5 class="mmh5 b-20">项目介绍</h5>
+                    <div class="mmcontent" ng-bind="project.presentation"></div>
+                </div>
+            </div>
+
+            <!--第二部分结束-->
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!--右侧代码-->
+        <div class="span4">
+
+
+
+            <div class="label-div t-20 border-all">
+                <div class="l-15">
+                    <h3 class="label-title border-b b-15 small clearfix" style="padding-bottom: 14px;">O2O资讯排行</h3>
+                </div>
+                <div class="label-main tody-hot l-15" ng-controller="newsTop">
+                    <ul>
+                        <li ng-repeat="list in newsItem"><a href="/detail.html?detailId={{list._id}}" ng-bind="list.title"></a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="label-div t-20 border-all">
+                <div class="l-15">
+                    <h3 class="label-title border-b b-15 small clearfix" style="padding-bottom: 14px;">O2O行业排行</h3>
+                </div>
+                <div class="label-main tody-hot l-15" ng-controller="industryTop">
+                    <ul>
+                        <li ng-repeat="list in newsItem"><a href="/detail.html?detailId={{list._id}}" ng-bind="list.title"></a></li>
+                    </ul>
+                </div>
+            </div>
+
+
+
+
+
+
+        </div>
+    </div>
+</div>
+
+<!--右侧代码结束-->
+
+
+<!-- /container -->
+
+<div class="container">
+
+    <div class="hr"></div>
+
+</div>
+
+<!-- /container -->
+
+</div>
+
+
+<% include footer %>

@@ -1,0 +1,39 @@
+<div class="page-nav clearfix">
+<%if(list.total > 0){%>
+        <span class="pages"><%= list.page%> of <%= list.total%></span>
+        <% if(list.page >1){%>
+        <a href="/1/list_<%= list.directoryId%>.html" class="first" title="« 首页">首页</a>
+        <a href="/<%= parseInt(list.page)-1%>/list_<%= list.directoryId%>.html">《</a>
+        <%}%>
+        <%if(list.page == 1 && list.total==1){%>
+        <span class="current"><%= list.page%></span>
+        <%}else if(list.page == 1 && list.total>2){%>
+        <span class="current"><%= list.page%></span>
+        <a href="/<%= parseInt(list.page)+1%>/list_<%= list.directoryId%>.html" class="page" title="<%= parseInt(list.page)+1%>"><%= parseInt(list.page)+1%></a>
+        <a href="/<%= parseInt(list.page)+2%>/list_<%= list.directoryId%>.html" class="page" title="<%= parseInt(list.page)+2%>"><%= parseInt(list.page)+2%></a>
+        <%}else if(list.page == 1 && list.total==2){%>
+        <span class="current"><%= list.page%></span>
+        <a href="/<%= parseInt(list.page)+1%>/list_<%= list.directoryId%>.html" class="page" title="<%= parseInt(list.page)+1%>"><%= parseInt(list.page)+1%></a>
+        <%}else if(list.page == 2 && list.total==2){%>
+        <a href="/<%= parseInt(list.page)-1%>/list_<%= list.directoryId%>.html" class="page" title="<%= parseInt(list.page)-1%>"><%= parseInt(list.page)-1%></a>
+        <span class="current"><%= list.page%></span>
+        <%}else if(list.page > 1 && list.total>list.page){%>
+        <a href="/<%= parseInt(list.page)-1%>/list_<%= list.directoryId%>.html" class="page" title="<%= parseInt(list.page)-1%>"><%= parseInt(list.page)-1%></a>
+        <span class="current"><%= list.page%></span>
+        <a href="/<%= parseInt(list.page)+1%>/list_<%= list.directoryId%>.html" class="page" title="<%= parseInt(list.page)+1%>"><%= parseInt(list.page)+1%></a>
+        <%}else if(list.page == list.total){%>
+        <a href="/<%= parseInt(list.page)-2%>/list_<%= list.directoryId%>.html" class="page" title="<%= parseInt(list.page)-2%>"><%= parseInt(list.page)-2%></a>
+        <a href="/<%= parseInt(list.page)-1%>/list_<%= list.directoryId%>.html" class="page" title="<%= parseInt(list.page)-1%>"><%= parseInt(list.page)-1%></a>
+        <span class="current"><%= list.page%></span>
+        <%}%>
+        <% if(list.page <list.total){%>
+        <a href="/<%= parseInt(list.page)+1%>/list_<%= list.directoryId%>.html" class="page" title="<%= parseInt(list.page)+1%>">》</a>
+        <a href="/<%= parseInt(list.total)%>/list_<%= list.directoryId%>.html" class="last" title="尾页 »">尾页</a>
+        <%}%>
+
+<%}else{%>
+暂无数据！
+<%}%>
+</div>
+
+

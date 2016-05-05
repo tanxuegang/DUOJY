@@ -1,0 +1,54 @@
+<% include adminHeader.ejs %>
+<script type="text/javascript">
+    $(function(){
+        $("a.remove").click(function(){
+            var id = $(this).attr("data-id");
+            $.ajax({
+                url: '/admin/removeDirectory',
+                type: 'post',
+                cache: false,
+                dataType: 'json',
+                data: 'directoryId='+id,
+                success: function (ret) {
+                    if(ret.succee == true){
+                        alert(ret.msg);
+                        window.location.href = '/admin/directoryList';
+                    }else{
+                        alert(ret.msg);
+                    }
+                },
+                error: function () {
+                    alert('ajax失败了，请重试！');
+                }
+            });
+        });
+    });
+</script>
+<div class="main-list clearfix" style="">
+    <div class="search-form">
+
+    </div>
+    <div class="sea_list_add"><a href="/admin/addDirectory">新增目录</a></div>
+    <div class="man-table">
+        <table width="100%" border="0" cellspacing="1" cellpadding="0" bgcolor="#CCCCCC" class="table">
+            <thead>
+            <tr>
+                <td width="100">ID</td>
+                <td width="100">目录名称</td>
+                <td width="200">配置地址</td>
+                <td width="100">状态</td>
+                <td width="200">创建时间</td>
+                <td width="150">操作</td>
+            </tr>
+            </thead>
+            <tbody>
+            <% list.forEach(function(item){ %>
+            <% include directoryItem %>
+            <% }) %>
+            </tbody>
+        </table>
+
+    </div>
+    <% include page %>
+</div>
+<% include adminFooter.ejs %>

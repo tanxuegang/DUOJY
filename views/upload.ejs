@@ -1,0 +1,19 @@
+<html>
+<head>
+    <script type="text/javascript" src="http://www.duojy.com/js/jquery.js"></script>
+    <script type="text/javascript">
+        function load()
+        {
+            //alert(parent.$("#uploadForm").attr("data"));
+            var imgID = parent.$("#uploadForm").attr("data");
+            var url = '<%= files%>';
+            url = 'http://img.duojy.com/imgs/'+url.split("imgs/")[1];
+            $(window.parent.document).find("#"+imgID).val(url)
+        }
+    </script>
+</head>
+
+<body onload="load()">
+</body>
+
+</html>

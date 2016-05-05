@@ -1,0 +1,242 @@
+<% include adminHeader.ejs %>
+<script type="text/javascript">
+    $(function(){
+        var form = $("#signupForm");
+        form.validate({
+            submitHandler:function(form){
+
+                $.ajax({
+                    url: '/admin/saveArticle',
+                    type: 'post',
+                    cache: false,
+                    dataType: 'json',
+                    data: $("#signupForm").serialize(),
+                    success: function (ret) {
+                        if(ret.succee == true){
+                            console.log(ret.msg);
+                            //window.location.href = '/admin/addArticle?directoryId='+$("[name='directoryId']").val();
+                        }
+                    },
+                    error: function () {
+                        alert('ajax失败了，请重试！');
+                    }
+                });
+            }
+        });
+
+        $(".a-submit").click(function(){
+            $("[name='content']").text(UM.getEditor('myEditor').getContent())
+            form.submit();
+        });
+        $(".a-reset").click(function(){
+            form[0].reset();
+        });
+
+
+        $.ajax({
+            url: '/directoryList',
+            type: 'get',
+            cache: false,
+            dataType: 'json',
+            data: '',
+            success: function (ret) {
+                $.each(ret,function(i,value){
+                    <%if(typeof directoryId != 'undefined'){%>
+                    if(value._id == '<%= directoryId%>'){
+                        $("[name='directoryId']").append("<option value='"+value._id+"' selected='selected'>"+value.directoryName+"</option>")
+                        $("[name='directoryName']").val(value.directoryName);
+                    }else{
+                        $("[name='directoryId']").append("<option value='"+value._id+"'>"+value.directoryName+"</option>")
+                    }
+                    <%}else{%>
+                    $("[name='directoryId']").append("<option value='"+value._id+"'>"+value.directoryName+"</option>")
+                    $("[name='directoryName']").val(ret[0].directoryName);
+                    <%}%>
+
+                });
+                //http://localhost:8080/admin/addArticle?directoryId=56ef98f2bdee5bb005d446ed
+                for(var i =0; i<= $(".d_html").length; i++){
+                 if(i == $(".d_html").length){
+                 alert("end");
+                 break;  //加上这句
+                 }
+                 var box = $(".d_html").eq(i);
+                 var t = box.find(".d_t").text();
+                 if(t==""){
+                 alert("跳过");
+                 continue;
+                 }
+
+                 $("[name='keywords']").val(box.find(".d_k").text());
+                 $("[name='title']").val( box.find(".d_t").text());
+                 $("[name='tags']").val(box.find(".d_t").text());
+                 $("[name='description']").val(box.find(".d_d").text());
+
+                    var img_src = box.find(".d_i img").attr("src");
+                    if(img_src != undefined){
+                        $("[name='imageUrl']").val("http://img.duojy.com/imgs/"+img_src);
+                        $("[name='content']").val('<p style="text-align:center;"><img src="http://img.duojy.com/imgs/'+img_src+'" style="max-width:80%" /></p>'+box.find(".d_c").html());
+
+                    }else{
+                        $("[name='imageUrl']").val("");
+                        $("[name='content']").val(box.find(".d_c").html());
+
+                    }
+
+                    $("[name='media_name']").val(box.find(".d_z").text());
+
+
+                 form.submit();
+                 alert("+1");
+                 }
+
+
+
+
+                //成语
+                /*for(var i =0; i<= $(".cy_box").length; i++){
+                    if(i == $(".cy_box").length){
+                        alert("end");
+                        break;  //加上这句
+                    }
+                    var box = $(".cy_box").eq(i);
+                    var k = $(".cy_box").eq(i).attr("data-k");
+                    if(k==""){
+                        alert("跳过");
+                        continue;
+                    }
+                     $("[name='keywords']").val(box.attr("data-k"));
+                     $("[name='title']").val( box.attr("data-k"));
+                     $("[name='tags']").val(box.attr("data-k"));
+                     $("[name='description']").val(box.attr("data-t"));
+                     $("[name='content']").val(box.html());
+
+                    form.submit();
+                    alert("+1");
+                }*/
+
+
+
+
+                //谜语+歇后语
+                /*for(var i =0; i<= $(".op-imprecise-left").length; i++){
+                 if(i == $(".op-imprecise-left").length){
+                 alert("end");
+                 break;  //加上这句
+                 }
+                 $("[name='title1']").val($(".op-imprecise-left").eq(i).text());
+                 var e = $("[name='title1']").val();
+                 $("[name='keywords']").val(e.split(" —— 谜底: ")[1]);
+                 $("[name='title']").val("常用的谜语:"+e.split(" —— 谜底: ")[0]);
+                 $("[name='tags']").val(e.split(" —— 谜底: ")[0]);
+                 $("[name='description']").val('谜面：'+e.replace(" —— 谜底: ","；谜底："));
+                 $("[name='content']").val('<p><b>【谜面】</b>'+e.replace(" —— 谜底: ","</p><p><b>【谜底】</b>")+'</p>');
+                 form.submit();
+                 }*/
+
+
+            },
+            error: function () {
+                alert('ajax失败了，请重试！');
+            }
+        });
+
+
+
+        $("[name='directoryId']").change(function(){
+            var text = $(this).find("option:selected").text();
+            $("[name='directoryName']").val(text);
+        });
+
+        $(".addTxt").click(function(){
+            $(this).hide();
+            $(this).prev().show();
+        });
+
+
+
+    });
+
+   /* for(var i =1; i<=360; i++){
+        console.log("<url>");
+        console.log("<loc>http://www.duojy.com/"+i+"/list_56ef9e1ebdee5bb005d446f4.html</loc>");
+        console.log("<lastmod>2016-4-20</lastmod>");
+        console.log("<changefreq>daily</changefreq>");
+        console.log("<priority>0.8</priority>");
+        console.log("</url>");
+    }*/
+</script>
+<!--<script type="text/javascript" src="/js/Tupload.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $('#upload').uploader({
+            auto:true,
+            url:'/file/uploading',
+            imgName:'imageUrl',
+            buttonText:'上传图片'
+        });
+    });
+</script>-->
+<style type="text/css">
+    #imgsrc{ width: 200px; float: left}
+    #btnUp{ width: 80px;}
+    #fileText{ float: left;  padding: 0 10px; margin-right:10px;}
+</style>
+
+
+<div class="main-form clearfix">
+    <form id="signupForm" method="post">
+        <div class="subform" style="width:800px;">
+            <ul>
+                <li><span>所属目录：</span><select name="directoryId" ></select></li>
+                <input type="hidden" name="directoryName">
+                <li><span>显示位置：</span>
+                    <input type="radio" name="grade" value="1" checked="checked" style="width: 16px; float: inherit"> 普通 &nbsp; &nbsp; &nbsp;
+                    <input type="radio" name="grade" value="0" style="width: 16px; float: inherit"> 幻灯 &nbsp; &nbsp; &nbsp;
+                    <input type="radio" name="grade" value="2" style="width: 16px; float: inherit"> 推荐 </li>
+                <!--<li><span>123：</span><input name="title1" class="required" maxlength="100" type="text"> <i>*</i></li>-->
+                <li><span>文章标题：</span><input name="title" class="required" maxlength="100" type="text"> <i>*</i></li>
+                <li><span>作者：</span><input name="media_name" class="required" maxlength="50" type="text" value="不详"> <i>*</i></li>
+                <li><span>关键字：</span><input name="keywords" class="required" maxlength="50" type="text"> <i>*</i></li>
+                <li><span>图片地址：</span><input name="imageUrl" id="imageUrl" type="text" maxlength="200" style=" width: 60%"><div id="upload"></div></li>
+                <li><span>标记：</span><input name="tags" class="required" maxlength="50" type="text"> <i>*</i></li>
+                <li class="li-textarea clearfix"><span>描述：</span><textarea name="description" cols="" maxlength="200" rows="" class="required"></textarea> <i>*</i></li>
+                <li style="float: left; width: 100px;"><span>内容：</span></li>
+                <textarea name="content" cols="" rows="" class="required" style="display: none"></textarea>
+                <!--style给定宽度可以影响编辑器的最终宽度-->
+                <style type="text/css">
+                    .edui-container{ margin-left: 103px;}
+                </style>
+                <script type="text/plain" id="myEditor" style="width:590px;height:200px;"></script>
+                <div class="clear"></div>
+                <script type="text/javascript">
+                    //实例化编辑器
+                    var um = UM.getEditor('myEditor');
+
+                </script>
+
+
+            </ul>
+            <div class="form-but"><a href="javascript:void(0);" class="a-submit">提 交</a><a href="/admin/directoryList" class="a-reset">返 回</a> </div>
+        </div>
+
+    </form>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<% include adminFooter.ejs %>
+

@@ -1,0 +1,150 @@
+<% include header %>
+<script type="text/javascript">
+    $(function(){
+        $("#che_comment").click(function(){
+            var flag = $(this).attr("checked")
+            //alert(flag == "checked");
+            if(flag == "checked"){
+                $("#inp_comment").hide()
+                $("#inp_comment").val("匿名")
+            }else{
+                $("#inp_comment").show()
+                $("#inp_comment").val("")
+                $("#inp_comment").focus();
+            }
+        });
+
+        $("#sub_comment").click(function(){
+            var name = $("#inp_comment").val();
+            var content = $("#tarea_comment").val();
+            if(name == ""){
+                alert("“您的名称”或“您的评论”不能为空！")
+                $("#inp_comment").focus();
+            }else if(content == ""){
+                alert("“您的名称”或“您的评论”不能为空！")
+                $("#tarea_comment").focus();
+            }else{
+                $.ajax({
+                    url: '/comment',
+                    type: 'post',
+                    cache: false,
+                    dataType: 'json',
+                    data: $("#commentForm").serialize(),
+                    success: function (ret) {
+                        alert(ret.msg);
+                        $("#inp_comment").val("");
+                        $("#tarea_comment").val("");
+                        if(ret.state){
+                            $(".d_con_list ul").prepend("<li><p><b>"+ret.data.name+"</b> <i>刚刚</i></p><p>"+ret.data.content+"</p></li>")
+                        }
+                    },
+                    error: function () {
+                        alert('ajax失败了，请重试！');
+                    }
+                });
+            }
+        });
+    })
+</script>
+<div class="main">
+    <div class="detail_con shadow clearfix">
+        <div class="detail_left">
+            <div class="detail_wz">当前位置： 首页 > <a href="/1/list_<%= article.directoryId%>.html"><%= article.directoryName%></a> > 正文</div>
+            <div class="detail_tit">
+                <p><%= article.title%></p>
+                作者：<%= article.media_name%>  &nbsp; &nbsp; &nbsp; &nbsp; 时间：<%= moment(article.time).format('YYYY-MM-DD')%> &nbsp; <%= article.hits%>人已浏览
+            </div>
+            <div class="detail_coneten">
+                <%- article.content%>
+            </div>
+            <div class="detail_comment">
+                <div class="bdsharebuttonbox" style="padding: 0 0 10px 30px"><a href="#" class="bds_more" data-cmd="more">分享到：</a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">QQ空间</a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">新浪微博</a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博">腾讯微博</a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信">微信</a><a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友">QQ好友</a><a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧">百度贴吧</a><a href="#" class="bds_copy" data-cmd="copy" title="分享到复制网址">复制网址</a></div>
+                <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"16"},"share":{"bdSize":16}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+                <div class="d_con_list">
+                    <ul>
+                        <% comment.forEach(function(list){%>
+                        <li>
+                            <p><b><%= list.name%></b> <i><%= moment(list.date).format('YYYY-MM-DD HH:mm:ss')%></i></p>
+                            <p><%= list.content%></p>
+                        </li>
+                        <%})%>
+                    </ul>
+                </div>
+
+                <form method="post" id="commentForm">
+                    <input type="hidden" name="articleId" value="<%= article._id%>">
+                    <input type="hidden" name="articleTitle" value="<%= article.title%>">
+                <div class="d_com_name">
+                    <span>您的称呼：</span>
+                    <p><input type="text" name="name" value="" id="inp_comment" placeholder="请输入您的称呼！" maxlength="20"> &nbsp; <input type="checkbox" id="che_comment" style="width: inherit"> 匿名</p>
+                </div>
+                <div class="d_com_con">
+                    <span>您的评论：</span>
+                    <p><textarea placeholder="请输入您的评论，字数限制200个！" name="content" id="tarea_comment" maxlength="200"></textarea></p>
+                </div>
+                <div class="d_com_btn">
+                    <a href="javascript:void(0)" id="sub_comment">发表评论</a>
+                </div>
+                </form>
+            </div>
+            <div class="xg clearfix">
+                <div class="xg_box">
+                    <p>猜你喜欢</p>
+                    <ul>
+                        <% cn.forEach(function(list){%>
+                        <li>· <a href="/detail_<%= list._id%>.html"  title="<%= list.title%>"><%= list.title%></a> </li>
+                        <%})%>
+
+                    </ul>
+                </div>
+                <div class="xg_box">
+                    <p>相关推荐</p>
+                    <ul>
+                        <% xg.forEach(function(list){%>
+                        <li>· <a href="/detail_<%= list._id%>.html"  title="<%= list.title%>"><%= list.title%></a> </li>
+                        <%})%>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="detail_right">
+            <div class="delist_tit">热门标签</div>
+            <div class="detail_tag">
+                <% topTags.forEach(function(list){%>
+                <a href="/detail_<%= list._id%>.html" title="<%= list.tags%>"><%= list.tags%></a>
+                <%})%>
+            </div>
+            <div class="detail_gg">
+                <img src="/images/gg300.gif" width="300" height="300" alt="朵朵学习">
+            </div>
+            <div class="delist_tit">栏目热点</div>
+            <div class="delist_list">
+                <ul>
+                    <% top.forEach(function(list){%>
+                    <li>· <a href="/detail_<%= list._id%>.html"  title="<%= list.title%>"><%= list.title%></a> </li>
+                    <%})%>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% include footer %>
+<script type="text/javascript">
+    $(function(){
+        $.ajax({
+            url: '/AddHits',
+            type: 'post',
+            cache: false,
+            dataType: 'json',
+            data: 'detailId=<%= article._id%>',
+            success: function (ret) {
+                console.log(ret)
+            },
+            error: function () {
+
+            }
+        });
+    });
+</script>

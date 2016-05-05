@@ -1,0 +1,26 @@
+<% include header %>
+<form id="modify_form" action="/users/changePwd" method="post">
+    <div class="modify_box">
+
+        <div class="modify_c">
+            <ul>
+                <li><span>原 密 码：</span><input type="password" value="" name="jiuPassword"></li>
+                <li><span>新 密 码：</span><input type="password" value="" name="newPassword"></li>
+                <li><span>验证密码：</span><input type="password" value="" name="yanPassword"></li>
+                <li><span>&nbsp;</span><a href="javascript:void(0)" class="modify_btn">修改密码</a></li>
+            </ul>
+        </div>
+        <div class="modify_t">xxxiyu</div>
+    </div>
+
+
+</form>
+<script type="text/javascript">
+    $(function(){
+        $(".modify_btn").click(function(){
+            $("#modify_form").submit();
+        });
+    });
+</script>
+<% include footer %>
+

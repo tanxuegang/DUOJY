@@ -1,0 +1,45 @@
+<% include header %>
+
+<div class="main">
+    <div class="detail_con shadow clearfix">
+        <div class="list_box">
+            <ul>
+                <% list.item.forEach(function(item){ %>
+                <li>
+
+                    <a href="/detail_<%= item._id%>.html"><%= item.title%></a>
+                    <div class="list_box_xx"> 作者：<%= item.media_name%> &nbsp; &nbsp; 时间：<%= moment(item.time).format('YYYY-MM-DD')%>  &nbsp; &nbsp; <%= item.hits%>人已浏览 </div>
+                    <p class="clearfix">
+                        <% if(item.imageUrl != ''){%>
+                        <a href="/detail_<%= item._id%>.html"> <img src="<%= item.imageUrl%>" height="80" width="120" alt="<%= item.title%>" title="<%= item.title%>"></a>
+                        <%}%>
+                        <%= item.description%>
+                    </p>
+                </li>
+                <% }) %>
+            </ul>
+            <% include page %>
+        </div>
+        <div class="detail_right">
+            <div class="delist_tit">热门标签</div>
+            <div class="detail_tag">
+                <% topTags.forEach(function(list){%>
+                <a href="/detail_<%= list._id%>.html" title="<%= list.tags%>"><%= list.tags%></a>
+                <%})%>
+            </div>
+            <div class="detail_gg">
+                <img src="/images/gg300.gif" width="300" height="300" alt="朵朵学习">
+            </div>
+            <div class="delist_tit">栏目热点</div>
+            <div class="delist_list">
+                <ul>
+                    <% top.forEach(function(list){%>
+                    <li>· <a href="/detail_<%= list._id%>.html" title="<%= list.title%>"><%= list.title%></a> </li>
+                    <%})%>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% include footer %>

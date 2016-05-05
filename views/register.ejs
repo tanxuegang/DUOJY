@@ -1,0 +1,90 @@
+<% include header %>
+
+<div class="hr tp-div-nexthr" style="margin-top: 0;margin-bottom: 0;padding: 0;"></div>
+<div class="container pb-15">
+    <!-- Example row of columns -->
+    <div class="row">
+        <div class="span16">
+            <div class="label-public-title t-30">
+                <ul class="clearfix">
+                    <li class="pull-left r-20 border-all"><a href="/users/login" title="登录">登录</a></li>
+                    <li class="pull-left selected border-all"><a href="/users/register" title="注册" style="_padding: 0;">注册</a></li>
+                </ul>
+            </div>
+            <div class="label-div t-15 border-all" style="padding: 0;">
+                <div class="label-main">
+                    <div class="clearfix label-public pt-25">
+                        <div class="pull-left public-login span10" id="register-third" style="display: block;">
+                            <div class="fc333 l-30">使用社会化账号直接注册，无需填写任何资料，30秒完成注册</div>
+                            <div class="clearfix t-25 third-party l-30">
+                                <div class="pull-left sina-div r-10 b-10">
+                                    <a class="ie6png" href="#">新浪微博</a>
+                                </div>
+                                <div class="pull-left tencent-div r-10 b-10">
+                                    <a class="ie6png" href="#">腾讯微博</a>
+                                </div>
+                                <div class="pull-left renren-div r-10 b-10">
+                                    <a class="ie6png" href="#">人人网</a>
+                                </div>
+                                <div class="pull-left linkin-div b-10">
+                                    <a class="ie6png" href="#">LinkedIn</a>
+                                </div>
+                            </div>
+                            <p class="l-30 t-30 fc999">没有社会化账号？请使用<a href="#" title="邮箱注册" class="l-5 email-register-button">邮箱注册</a></p>
+                        </div>
+
+                        <div class="clearfix" id="register-mail" style="display: none;">
+                            <form id="register-form" action="/users/registerUser" method="post">							<div class="pull-left public-login span10">
+                                    <div class="pl-25 fc333">没有社会化账号，使用邮箱账号注册</div>
+                                    <div class="clearfix pl-25 pt-25">
+                                        <div class="title pull-left fc999">昵称</div>
+                                        <div class="pull-left l-20" style="_margin-left: 0;_width: 100px;"><input class="span4" name="username" id="UcenterMember_account" type="text" maxlength="32" value="" /></div>
+                                        <span class="pull-left l-20 fc999 info account_msg">设置您的个性化昵称</span>
+                                    </div>
+                                    <div class="clearfix pl-25 pt-25">
+                                        <div class="title pull-left fc999">邮箱</div>
+                                        <div class="pull-left l-20" style="_margin-left: 0;_width: 100px;"><input class="span4" name="email" id="UcenterMember_email" type="text" maxlength="128" value="" /></div>
+                                        <span class="pull-left l-20 fc999 info email_msg">该邮箱用于网站登录</span>
+                                    </div>
+                                    <div class="clearfix pl-25 pt-25">
+                                        <div class="title pull-left fc999">密码</div>
+                                        <div class="pull-left l-20" style="_margin-left: 0;_width: 100px;"><input type="password" id="password" name="password" value="" class="span4"/></div>
+                                        <span class="pull-left l-20 fc999 info password_msg">密码最小值为6位（字母区分大小写）</span>
+                                    </div>
+                                    <div class="clearfix pl-25 pt-25">
+                                        <div class="title pull-left fc999">确认密码</div>
+                                        <div class="pull-left l-20" style="_margin-left: 0;_width: 100px;"><input type="password" id="UcenterMember_password2" name="UcenterMember[password2]" value="" class="span4"/></div>
+                                        <span class="pull-left l-20 fc999 info password_msg">请再次输入密码</span>
+                                    </div>
+                                    <div class="clearfix pl-25 pt-25">
+                                        <div class="title pull-left">&nbsp;</div>
+                                        <div class="pull-left l-20 t-8" style="_width: auto;_margin-left: 15px;"><input type="checkbox" checked="checked" style="_width: 20px;_margin: 0;"/></div>
+                                        <span class="pull-left l-5 info fc999" style="_width: auto;_margin: 0;">我已阅读并接受<a href="/agreement.html" title="生物探索服务条款协议" target="_blank">医疗器械创新网</a></span>
+                                    </div>
+                                    <div class="clearfix pl-25 pt-25 pb-30">
+                                        <div class="title pull-left l-20" style="_margin-left: 10px;">&nbsp;</div>
+                                        <a href="javascript:void(0);" title="注册" class="pull-left login-register-btn">注&nbsp;册</a>
+                                        <span class="pull-left l-20 info fc999" style="_width: auto;_margin: 0 0 0 10px;">社会化账号<a class="l-5 sina-register-button" href="javascript:void(0)" title="注册">注册</a></span>
+                                    </div>
+                                </div>
+                                <div class="pull-left t-50 l-20">
+                                    <div class="label-div border-all" style="padding: 10px;width: 150px;"><img class="lazyloadimg show_fave" src="/images/user_180.gif" style="width: 150px;height: 150px; display: block;" /></div>
+                                    <div class="center t-10"><input id="file" type='file' name="file" onChange="ajaxFileUpload()" /><input id="new_face" type='hidden' name="new_face" value="" /></div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function(){
+        $(".login-register-btn").click(function(){
+            $("#register-form").submit();
+        });
+    });
+</script>
+<% include footer %>

@@ -1,0 +1,195 @@
+<% include adminHeader.ejs %>
+
+<script type="text/javascript">
+    $(function(){
+        $("#siteIndex").click(function(){
+            var _this = $(this);
+            _this.text("生成中...")
+            $.ajax({
+                url: '/index',
+                type: 'get',
+                cache: false,
+                dataType: 'html',
+                data: '',
+                success: function (html) {
+                    var newHtml = {
+                        html:html
+                    }
+                    $.ajax({
+                        url: '/admin/setIndex',
+                        type: 'post',
+                        cache: false,
+                        async: false,
+                        dataType: 'html',
+                        data: newHtml,
+                        success: function (ret) {
+                            _this.text("生成首页")
+                            alert(ret);
+                        },
+                        error: function (ret) {
+                            alert(ret);
+
+                        }
+                    });
+                },
+                error: function () {
+                    alert('Html失败了，请重试！');
+                }
+            });
+        });
+    });
+</script>
+<!--
+<div class="place">
+	<ul>
+    	<li class="bornone"><a href="#" class="on">首页</a></li>
+        <li><a href="#">入库管理</a><i></i></li>
+        <li><a href="#">出库管理</a><i></i></li>
+    </ul>
+</div>
+-->
+<iframe src="/" style="display: none" id="htmlIframe"></iframe>
+<div class="main-list clearfix">
+    <div class="home-left">
+        <div class="user-manage">
+            <dl>
+                <dt><img src="/adminImages/us.png" width="90" height="90"/></dt>
+                <dd class="d1">您好！ <%= session.name%></dd>
+                <dd class="d2"><a href="/users/modify.html">修改密码</a> &nbsp; &nbsp; <a href="#">注销</a></dd>
+                <dd class="d3">2015-8-18 14:44</dd>
+            </dl>
+        </div>
+        <div class="siren clearfix">
+            <div class="sir-tit">仓位告警检测</div>
+            <div class="sir-list">
+                <div class="sir-list-box">
+                    <dl>
+                        <dd><pre class="sir-pre1" style="height:100px;"></pre></dd>
+                        <dt>105</dt>
+                    </dl>
+                </div>
+                <div class="sir-list-box">
+                    <dl>
+                        <dd><pre class="sir-pre2" style="height:80px;"></pre></dd>
+                        <dt>305</dt>
+                    </dl>
+                </div>
+                <div class="sir-list-box">
+                    <dl>
+                        <dd><pre class="sir-pre2" style="height:50px;"></pre></dd>
+                        <dt>405</dt>
+                    </dl>
+                </div>
+                <div class="sir-list-box">
+                    <dl>
+                        <dd><pre class="sir-pre3" style="height:50px;"></pre></dd>
+                        <dt>505</dt>
+                    </dl>
+                </div>
+                <div class="sir-list-box">
+                    <dl>
+                        <dd><pre class="sir-pre3" style="height:50px;"></pre></dd>
+                        <dt>605</dt>
+                    </dl>
+                </div>
+            </div>
+            <div class="sir-more"><a href="#">查看更多</a></div>
+        </div>
+        <div class="tb">
+            <img src="/adminImages/xx.jpg" width="220" height="208" /> </div>
+    </div>
+
+    <div class="home-right">
+        <div class="tab-tit">
+            <ul>
+                <li class="on">我的工作台</li>
+            </ul>
+        </div>
+        <div class="ind_box clearfix">
+            <div class="ind_box_d clearfix">
+                <div class="d49">
+                    <dl>
+                        <dt>
+                            <img src="/adminImages/f_14.png" width="60" height="60">
+                        <p>SEO管理</p>
+                        </dt>
+                        <dd>
+                            <p>静态页面：<a href="javascript:void(0);" id="siteIndex">生成首页</a></p>
+                            <p>关键字、描述管理：<a href="#">修改</a></p>
+                            <p>友情链接：<a href="#">修改</a></p>
+                            <p>收录代码：<a href="#">修改</a></p>
+                        </dd>
+                    </dl>
+                </div>
+
+                <div class="d49">
+                    <dl>
+                        <dt>
+                            <img src="/adminImages/f_11.png" width="60" height="60">
+                        <p>网站统计</p>
+                        </dt>
+                        <dd>
+                            <p>内容总计：<a href="#">63024</a> 条</p>
+                            <p>有图内容：<a href="#">800</a> 条</p>
+                            <p>评论数量：<a href="#">94</a> 条</p>
+                            <p>用户总计：<a href="#">800</a> 个</p>
+                        </dd>
+                    </dl>
+                </div>
+                <div class="d49 ts">
+                    <dl>
+                        <dt>
+                            <img src="/adminImages/f_10.png" width="60" height="60">
+                        <p>综合管理</p>
+                        </dt>
+                        <dd>
+                            <p>网站首页：<a href="/" target="_blank">新窗口打开</a></p>
+                            <p>用户管理：<a href="/admin/user">跳转</a> <a href="#">新增</a></p>
+                            <p>目录管理：<a href="/admin/directoryList">跳转</a> <a href="/admin/addDirectory">新增</a></p>
+                            <p>文章管理：<a href="/admin/articleList">跳转</a> <a href="/admin/addArticle">新增</a></p>
+                            <p>评论管理：<a href="/admin/commentList">跳转</a></p>
+                            <p>统计代码：<a href="#">修改</a></p>
+                            <p>广告管理：<a href="#">修改</a></p>
+                            <p>推荐管理：<a href="#">管理</a></p>
+                        </dd>
+                    </dl>
+                </div>
+                <div class="d49 ts">
+                    <dl>
+                        <dt>
+                            <img src="/adminImages/f_05.png" width="60" height="60">
+                        <p>栏目管理</p>
+                        </dt>
+                        <dd>
+                            <p>信息资讯：<a href="#">600</a> 条 &nbsp; <a href="#">sitemap</a></p>
+                            <p>成语大全：<a href="#">600</a> 条 &nbsp; <a href="#">sitemap</a></p>
+                            <p>信息资讯：<a href="#">600</a> 条 &nbsp; <a href="#">sitemap</a></p>
+                            <p>信息资讯：<a href="#">600</a> 条 &nbsp; <a href="#">sitemap</a></p>
+                            <p>信息资讯：<a href="#">600</a> 条 &nbsp; <a href="#">sitemap</a></p>
+                        </dd>
+                    </dl>
+                </div>
+
+
+               <!-- <div class="d49">
+                    <dl>
+                        <dt>
+                            <img src="/adminImages/f_02.png" width="60" height="60">
+                        <p>用户管理</p>
+                        </dt>
+                        <dd>
+                            <p>用户总计：<a href="#">800</a> 个</p>
+                            <p>超级管理：<a href="#">1</a> 个</p>
+                            <p>栏目管理：<a href="#">6</a> 个</p>
+                            <p>普通会员：<a href="#">644</a> 个</p>
+                        </dd>
+                    </dl>
+                </div>-->
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<% include adminFooter.ejs %>
+

@@ -1,0 +1,51 @@
+<% include header %>
+
+<div class="main">
+    <div class="detail_con shadow clearfix">
+        <%if(list.item.length == 0 ){%>
+        <div class="sea_null" style=" width:840px;line-height: 200px; font-size: 18px; text-align: center; float: left">很抱歉！没有找到你要的“<span style="color: red"><%= searchWord%></span>”。</div>
+        <%}else{%>
+        <div class="list_box">
+            <ul>
+                <% list.item.forEach(function(item){ %>
+                <li>
+                    <a href="/detail_<%= item._id%>.html"><%= item.title%></a>
+                    <div class="list_box_xx"> 作者：<%= item.media_name%> &nbsp; &nbsp; 时间：<%= moment(item.time).format('YYYY-MM-DD')%>  &nbsp; &nbsp; 浏览：<%= item.hits%> </div>
+                    <p><%= item.description%></p>
+                </li>
+                <% }) %>
+            </ul>
+            <!--<% include page %>-->
+        </div>
+        <script type="text/javascript">
+            $(function(){
+                $(".list_box ul li a").each(function(i){
+                    var _d = $(".list_box ul li a").eq(i)
+                    //console.log(i);
+                    var text = _d.text();
+                    text = text.replace('<%= searchWord%>','<span style="color:red"><%= searchWord%></span>');
+                    _d.html(text);
+                });
+
+                if($(".list_box ul li a").length == 1){
+                    window.location.href=$(".list_box ul li a").eq(0).attr("href");
+                }
+            });
+        </script>
+        <%}%>
+
+        <div class="detail_right">
+            <div class="delist_tit">热门标签</div>
+            <div class="detail_tag">
+                <% topTags.forEach(function(list){%>
+                <a href="/detail_<%= list._id%>.html" title="<%= list.tags%>"><%= list.tags%></a>
+                <%})%>
+            </div>
+            <div class="detail_gg">
+                <img src="/images/gg300.gif" width="300" height="300" alt="朵朵学习">
+            </div>
+        </div>
+    </div>
+</div>
+
+<% include footer %>

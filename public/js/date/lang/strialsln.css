@@ -1,0 +1,117 @@
+/*-----产地直供----*/
+.common_nav .ori-nav{background: #e44846;height: auto;width: 238px;box-shadow:1px;}
+.ori-nav ul li:hover{background-color: #fff; padding-right: none;}
+.ori-nav ul li.ori-li{border:none;height: 109px;width:auto;padding-right:0;line-height: 20px;}
+.ori-nav ul li.ori-li a.b-top,.ori-ls-box a{color: #fff;}
+.ori-nav ul li.ori-li a.b-top{height:37px;border-bottom:none;border-top:1px dashed #CCCCCC;padding-top:10px;line-height:37px; }
+.ori-nav ul li.ori-li a.top-num1{border-top: 1px solid #fff;}
+.ori-nav ul li:nth-child(1) a.vn {
+	border-top:none;
+}
+.ori-ls-box a{line-height: 28px;}
+.ori-ls-box{color: #fff;}
+.origin_tab{height:402px;}
+.ori-nav ul li.ori-li-hover a.b-top{color: #333;}
+.ori-nav ul li.ori-li-hover .ori-ls-box a{color: #999}
+.star-box{background-color: #fff;border:1px solid #d6d6d6;width:212px;height:401px;border-top:none; overflow: hidden;}
+.star-box h3{background: none repeat scroll 0 0 #eee;
+    border-bottom: 1px solid #d6d6d6;
+    color: #666;
+    font-size: 13px;
+    font-weight: normal;
+    height: 40px;
+    line-height: 40px;
+    padding-left: 55px;
+    overflow: hidden;
+}
+.star-box h3 i{  display: inline;
+    height: 55px;
+    left: 15px;
+    margin-right: 10px;
+    position: absolute;
+    width: 31px;
+    z-index: 9;
+    background: url(../images/pr/ori_tag.gif) no-repeat;}
+.star-box h4{padding-left:6px;color:#909090; padding-top: 18px;font-weight: normal;}
+.star-box h4 i{font-weight: bold;font-style: normal;color:#787878;}
+.star-box dl{height: 70px;padding: 5px 10px;}
+.star-box dl dt{float: left;}
+.star-box dl dd{color:#676767; }
+.star-box dl dd lable{font-weight: bold;font-size: 14px; width: 120px; display: block; height: 40px; overflow: hidden; word-break: break-all; line-height: 140%;}
+.star-box dl dd b{color: #f00;}
+.star-box dl div.star-txt{float:left;padding-left:12px; }
+.star-box .g-ori-btn{padding: 10px 0; }
+.star-box .g-ori-btn a{float: right;width: 21px; height: 24px; background: url(../images/pr/origin_pagebtn.gif) no-repeat; margin-right: 14px; display: inline;}
+.star-box .g-ori-btn a.btn2{ background-position: -21px 0;}
+.ori-main{top:120px;}
+.ori-pic{height:139px;margin-top: 9px; }
+.ori-pic .o-pic-box{float: right;}
+.ori-pic .o-pic-box ul li{float: left; margin-left: 6px;}
+.ori-pref{width: 740px;}
+.ori-pref ul li{margin-left: 20px;}
+.ori-unt {width: 239px; margin-left: 0; border-radius:3px 3px 0 0; }
+.ori-un-color1{background-color: #7bbc00;}
+.ori-un-color2{background-color: #FFAB00;}
+.ori-un-color3{background-color: #994137;}
+.ori-un-color4{background-color: #459dff;}
+.ori-un-color5{background-color: #ff8e00;}
+.ori-un-pref ul{ padding: 24px 28px; position: relative;}
+.ori-un-pref ul li div.ls-map{border-bottom: none;  position: absolute; z-index: 99999}
+.ori-un-pref ul li div.on{display: block;border-bottom: none;top:39px;left:1px;}
+.ori-un-pref ul li a{display:inline-block;width: 87px;height: 24px; text-align: center; line-height: 24px;color: #fff; margin: 15px 0;}
+.ori-un-pref ul li i{margin-left:0;display: none;}
+.ori-un-pref ul li a.open-map i{display: inline-block;}
+.ori-un-pref ul li a:hover{ 10px;background: #fff;color:#57b717; }
+.ori-un-pref ul li i.two{margin-left:88px;}
+.ori-un-list ul li{position:relative;border-bottom: 1px dashed #fff; }
+.un-pref-left{height: 501px;}
+.ori-nav ul li.ori-li-hover a.vn{border-top: none;}
+.ori-nav ul li em.b-right{height: 109px; display: none;}
+.ori-nav ul li.ori-li-hover em.b-right{display: inline-block;}
+.ori-box-over{overflow:visible; box-shadow: 1px 1px 3px #d6d6d6;background: #fff;}
+.ori-kide-ls dl dt,.ori-kide-ls dl dd{float: none;}
+.ori-kide-ide{background:url(../images/i/ico-a.gif) 188px -237px no-repeat; }
+.ori-nav ul li a.b-bg{background:url(../images/i/ico-a.gif) 188px -237px no-repeat;}
+.star-tab{overflow:hidden;}
+.a-link0 .prod-city a:hover{color:#7bbc00}
+.a-link1 .prod-city a:hover{color:#ec8315}
+.a-link2 .prod-city a:hover{color:#994137}
+.a-link3 .prod-city a:hover{color:#459dff}
+.a-link4 .prod-city a:hover{color:#ff8e00}
+.nav-box{border: 1px solid #f00}
+.showBox{height: 270px;}
+.showBox .show-ls{position: relative; width: 1000px;}
+.star-tab{float: left;width:210px;}
+.un-tlchange .tl-right{}
+.un-tlchange a.r1{color:#7bbc00;}
+.un-tlchange a.r2{color:#ec8315;}
+.un-tlchange a.r3{color:#994137;}
+.un-tlchange a.r4{color:#459dff;}
+.un-tlchange a.r5{color:#ff8e00;}
+.un-tlchange a:focus, .un-tlchange a:hover {
+	text-decoration: none;
+}
+.un-tlchange span a{color: #fff;}
+.prod-city{padding: 25px;}
+.prod-city .ci-a{ margin-bottom: 15px;float:left;display:inline;text-align:center; width: 93px;height:
+42px; border-bottom: 1px dashed #fff; position: relative;line-height: 42px;}
+.prod-city .ci-a a{ color:#fff;display: block; line-height: 25px; height: 25px; overflow: hidden; width: 55px; margin: 0 auto; padding: 0 15px;}
+.prod-city .ci-a a:hover{background-color: #fff;}
+.prod-city .ci-a .ci-map{display: none;position: absolute;left:4px;top:27px;z-index:10;}
+/* .shlc-btn{width: 740px; position: absolute;z-index: 10;top:60px;} */
+.shlc-btn a.s-btn{ display:block;width: 15px; height: 30px; background: url(../images/pr/slhc_btn.gif) no-repeat; position: absolute; z-index: -1;}
+.shlc-btn a.sr-left{ background-position: 0 -30px; top: 60px; left: 0;}
+.shlc-btn a.sr-left:active{ background-position: 0 0;}
+.shlc-btn a.sr-right{ background-position: -15px -30px;top: 60px; right: 3px;}
+.shlc-btn a.sr-right:active{ background-position: -15px 0;}
+.season-recommend-bottom:hover a.s-btn {z-index: 10;}
+.un-h10{color: #fff;font:normal 18px "Microsoft YaHei UI"; }
+.bor-col1{padding:0;border-color:#7bbc00;border-width: 2px 2px 2px 0;border-style: solid; }
+.bor-col2{padding:0;border-color:#FFAB00;border-width: 2px 2px 2px 0;border-style: solid;}
+.bor-col3{padding:0;border-color:#994137;border-width: 2px 2px 2px 0;border-style: solid;}
+.bor-col4{padding:0;border-color:#459dff;border-width: 2px 2px 2px 0;border-style: solid;}
+.bor-col5{padding:0;border-color:#ff8e00;border-width: 2px 2px 2px 0;border-style: solid;}
+.bor-col6{padding:0;border-color:#302625;border-width: 2px 2px 2px 0;border-style: solid;}
+.bor-solid{ border:#CCCCCC solid 1px; padding:1px;}
+.star-tab img {width: 50px; height: 50px;}
+.star-box dl dd a {font-weight: bold; font-size: 14px; width: 120px; display: block; height: 40px; overflow: hidden; word-break: break-all; line-height: 140%;}

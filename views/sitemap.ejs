@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<urlset>
+    <url>
+        <loc>http://duojy.com</loc>
+        <lastmod><%= moment(new Date()).format('YYYY-MM-DD')%></lastmod>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>http://www.duojy.com</loc>
+        <lastmod><%= moment(new Date()).format('YYYY-MM-DD')%></lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>http://m.duojy.com</loc>
+        <lastmod><%= moment(new Date()).format('YYYY-MM-DD')%></lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <% article.forEach(function(list){%>
+    <url>
+        <loc>http://www.duojy.com/detail_<%= list._id%>.html</loc>
+        <lastmod><%= moment(list.time).format('YYYY-MM-DD')%></lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <%})%>
+</urlset>

@@ -1,0 +1,14 @@
+<tr>
+    <td><%= item.id%></td>
+    <td><%= item.directoryName%></td>
+    <td><%= item.netAddress%></td>
+    <td>
+        <%if(item.state == 0){%>
+        <span style="color: red">未使用</span>
+        <%}else{%>
+        <span style="color:green">已使用</span>
+        <%}%>
+    </td>
+    <td><%= moment(item.creationTime).format('YYYY-MM-DD HH:mm:ss')%></td>
+    <td><a href="/admin/editDirectory?directoryId=<%= item.id%>" class="edit">修改</a> | <a href="javascript:void(0);" data-id="<%= item.id%>" class="remove">删除</a></td>
+</tr>

@@ -1,0 +1,64 @@
+
+<% include adminHeader.ejs %>
+<script type="text/javascript">
+    $(function(){
+        var form = $("#signupForm");
+        form.validate({
+            submitHandler:function(form){
+
+                $.ajax({
+                    url: '/admin/saveProject',
+                    type: 'post',
+                    cache: false,
+                    dataType: 'json',
+                    data: $("#signupForm").serialize(),
+                    success: function (ret) {
+                        if(ret.succee == true){
+                            alert(ret.msg);
+                            window.location.href = '/admin/projectList';
+                        }
+                    },
+                    error: function () {
+                        alert('ajax失败了，请重试！');
+                    }
+                });
+            }
+        });
+
+        $(".a-submit").click(function(){
+            form.submit();
+        });
+        $(".a-reset").click(function(){
+            form[0].reset();
+        });
+
+    });
+</script>
+
+
+<div class="main-form clearfix">
+    <form id="signupForm" method="post">
+        <div class="subform" style="width:800px;">
+            <input type="hidden" name="projectId" value="<%= project._id%>">
+            <ul>
+                <li><span>地点：</span><select name="site">
+                        <% site.forEach(function(item){%>
+                        <option value="<%= item%>" <%if(item == project.site){%>selected<%}%> ><%= item%></option>
+                        <%})%>
+                    </select></li>
+                <li><span>分类：</span><select name="classify">
+                        <% classify.forEach(function(item){%>
+                        <option value="<%= item%>" <%if(item == project.classify){%>selected<%}%> ><%= item%></option>
+                        <%})%>
+                    </select></li>
+                <li><span>项目名称：</span><input name="name" class="required" type="text" value="<%= project.name%>"></li>
+                <li><span>项目截图：</span><input name="pic" class="required" type="text" value="<%= project.pic%>"></li>
+                <li class="li-textarea clearfix"><span>项目描述：</span><textarea name="description" cols="" rows="" class="required"><%= project.description%></textarea></li>
+                <li class="li-textarea clearfix"><span>项目介绍：</span><textarea name="presentation" cols="" rows="" class="required"><%= project.presentation%></textarea></li>
+
+            </ul>
+            <div class="form-but"><a href="javascript:void(0);" class="a-submit">提 交</a><a href="/admin/directoryList" class="a-reset">返 回</a> </div>
+        </div>
+    </form>
+</div>
+<% include adminFooter.ejs %>
